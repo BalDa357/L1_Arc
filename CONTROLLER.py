@@ -9,13 +9,11 @@ class DataWork:
         self.dp = DataProcessing()
         self.v = View()
 
-
-    def choice(self):
-        ch = raw_input()
-        if ch == '1':
-            return self.dp.getData()
-
     def mainInterface(self):
+        """
+        Main interface menu
+        :return:
+        """
         while True:
             self.v.show_menu()
             chosen = raw_input()
