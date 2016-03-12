@@ -1,7 +1,7 @@
 __author__ = 'Dart Vader'
 
 import pickle
-
+#vasya de lopata
 class DataRead:
     user_calories = 0
     def __init__(self):
