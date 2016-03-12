@@ -1,27 +1,47 @@
 __author__ = 'Dart Vader'
 
-from CONTROLLER import DataWork
-
 class View:
-    def __init__(self):
-        self.dw = DataWork()
-    def products(self):
-        for i in self.dw.dr.data_new:
+    def show_menu(self):
+        """
+        show menu
+        :return:
+        """
+        print '1. Show list of products'
+        print '2. Add product to list'
+        print '3. Show result of calculate'
+        print '4. Reset result of calculate'
+        print '0. Exit'
+
+    def show_products(self, data_list):
+        """
+        show all products to choice
+        :param data_list: List to show
+        :return:
+        """
+        for i in data_list:
                 print i
 
-    def choice(self, name, mass):
-        if self.dw.dr.calories_amount(name, mass):
-                self.dw.dr.user_calories
+    def show_calories(self, calories):
+        """
+        show user calories
+        :param calories: user calories
+        :return:
+        """
+        print calories
+
+    def inp_choice_msg(self):
+        """
+        show msg for user "Input your choice: "
+        :return:
+        """
+        print 'Input name of product: '
+
+    def inp_mass_msg(self):
+        """
+        show msg for user "Mass of this product: "
+        :return:
+        """
+        print 'Mass of this product: '
 
 
-    def mainInterface(self, chosen):
-        if chosen == '1':
-            self.products()
-        if chosen == '2':
-            print 'Input your choice: '
-            choicen = raw_input()
-            print 'Mass of this product: '
-            mass = raw_input()
-            self.choice(choicen)
-        if chosen == '3':
-            print 'Your calories: ', self.dw.dr.user_calories
+
