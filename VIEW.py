@@ -49,6 +49,3 @@ class View:
         :return:
         """
         print('Mass of this product: ')
-
-
-

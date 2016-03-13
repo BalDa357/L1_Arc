@@ -18,10 +18,6 @@ class DataProcessing:
     def get_data(self):
         """
         :return: Dictionary of all products and calories per 100 gram this product
-        >>> dp = DataProcessing()
-        >>> dp.get_data
-        {'basmati rice': 58, 'cornflakes': 84, 'pineapple, fresh': 66, 'rye bread': 65, 'weetabix': 69, 'french fries': 75, 'honey': 58, 'boiled potatoes': 56, 'mars bar': 68, 'branflakes': 74, 'jacket potato': 85, 'cheerios': 74, 'puffed wheat': 89, 'ice cream': 61, 'pitta bread': 57, 'baguette': 95, 'swede': 72, 'bagel': 72, 'parsnips, boiled': 97, 'cantaloupe melon': 67, 'couscous': 65, 'muesli, non toasted': 56, 'white bread': 70, 'crumpet, toasted': 69, 'jelly beans': 80, 'coco pops': 77, 'raisins': 64, 'shortbread biscuit': 64, 'white rice, steamed': 98, 'new potatoes': 62, 'coca cola': 63, 'digestive biscuit': 59, 'ryvita': 69, 'watermelon': 72, 'wholemeal bread': 69, 'cheese and tomato pizza': 60, 'croissant': 67, 'rice cakes': 82, 'shredded wheat': 67, 'apricots, canned in syrup': 64, 'rice krispies': 82, 'mashed potato': 70, 'sultanas': 56}
-
         """
         return self.data_new
 
