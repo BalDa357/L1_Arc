@@ -31,6 +31,7 @@ class View:
         :param calories: user calories
         :return:
         """
+
         print(calories)
 
     @staticmethod
