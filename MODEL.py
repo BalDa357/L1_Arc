@@ -1,5 +1,7 @@
-__author__ = 'Dart Vader'
 import pickle
+
+__author__ = 'Dart Vader'
+
 
 class DataProcessing:
     def __init__(self):
@@ -11,32 +13,32 @@ class DataProcessing:
             self.data_new = pickle.load(f)
         self.user_calories = 0
 
-    def getData(self):
+    def get_data(self):
         """
         :return: Dictionary of all products and calories per 100 gram this product
         """
         return self.data_new
 
-    def getUserCalories(self):
+    def get_user_calories(self):
         """
         :return: User calories
         """
         return self.user_calories
 
-    def ResetValues(self):
+    def reset_values(self):
         """
         Reset count of user calories
         :return:
         """
         self.user_calories = 0
 
-    def calorie (self, name):
+    def calorie(self, name):
         """
         Returns the amount of calories per 100 grams. of chosen product
         :param name: chosen product
         :return: amount of calories per 100 grams
         """
-        if name in self.data_new:
+        if name.lower() in self.data_new:
             return self.data_new[name]
         else:
             return False
@@ -49,7 +51,7 @@ class DataProcessing:
         :return:
         """
         if self.calorie(name):
-            self.user_calories += (mass/100)*self.calorie(name)
+            self.user_calories += round((int(mass)/100)*self.calorie(name), 3)
             return self.user_calories
         else:
             return False

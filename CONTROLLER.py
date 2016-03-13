@@ -1,9 +1,10 @@
-__author__ = 'Dart Vader'
-
 from MODEL import DataProcessing
 from VIEW import View
 
-class DataWork:#lol
+__author__ = 'Dart Vader'
+
+
+class DataWork:
 
     def __init__(self):
         self.dp = DataProcessing()
@@ -16,32 +17,28 @@ class DataWork:#lol
         """
         while True:
             self.v.show_menu()
-            chosen = raw_input()
+            chosen = input()
             if chosen == '1':
-                self.v.show_products(self.dp.getData())
+                self.v.show_products(self.dp.get_data())
             elif chosen == '2':
                 self.v.inp_choice_msg()
-                name = raw_input()
-                if name not in self.dp.getData():
-                    print 'Wrong product name'
+                name = input()
+                if name not in self.dp.get_data():
+                    print('Wrong product name')
                 else:
                     self.v.inp_mass_msg()
                     mass = input()
                     if self.dp.calories_amount(name, mass):
-                        self.dp.getUserCalories()
+                        self.dp.get_user_calories()
                     else:
-                        print 'Error'
+                        print('Error')
             elif chosen == '3':
-                print 'Your calories: ', self.dp.getUserCalories()
+                print('Your calories: ', self.dp.get_user_calories())
             elif chosen == '4':
-                self.dp.ResetValues()
+                self.dp.reset_values()
             elif chosen == '0':
                 break
 
 
-
-
 dw = DataWork()
-dw.mainInterface()
-
-
+dw.main_interface()
