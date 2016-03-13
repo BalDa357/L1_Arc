@@ -3,7 +3,7 @@ __author__ = 'Dart Vader'
 from MODEL import DataProcessing
 from VIEW import View
 
-class DataWork:
+class DataWork:#lol
 
     def __init__(self):
         self.dp = DataProcessing()
