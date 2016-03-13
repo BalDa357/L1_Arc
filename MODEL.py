@@ -14,10 +14,9 @@ class DataProcessing:
             self.data_new = pickle.load(f)
         self.user_calories = 0
 
-    @property
     def get_data(self):
         """
-        :return: Dictionary of all products and calories per 100 gram this product
+        :return: Dictionary of all products and calories (100g) this product
         """
         return self.data_new
 
