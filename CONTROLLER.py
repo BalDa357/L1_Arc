@@ -9,7 +9,7 @@ class DataWork:
         self.dp = DataProcessing()
         self.v = View()
 
-    def mainInterface(self):
+    def main_interface(self):
         """
         Main interface menu
         :return:
