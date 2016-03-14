@@ -10,6 +10,7 @@ class DataProcessing:
         :return:
         >>> dp = DataProcessing()
         """
+
         with open('data.pickle', 'rb') as f:
             self.data_new = pickle.load(f)
         self.user_calories = 0
@@ -18,6 +19,7 @@ class DataProcessing:
         """
         :return: Dictionary of all products and calories (100g) this product
         """
+        print(self.data_new)
         return self.data_new
 
     def get_user_calories(self):
@@ -65,3 +67,4 @@ class DataProcessing:
             return self.user_calories
         else:
             return False
+

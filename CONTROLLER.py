@@ -19,11 +19,11 @@ class DataWork:
             self.v.show_menu()
             chosen = input()
             if chosen == '1':
-                self.v.show_products(self.dp.get_data)
+                self.v.show_products(self.dp.get_data())
             elif chosen == '2':
                 self.v.inp_choice_msg()
                 name = input()
-                if name not in self.dp.get_data:
+                if name not in self.dp.get_data():
                     print('Wrong product name')
                 else:
                     self.v.inp_mass_msg()
