@@ -36,6 +36,13 @@ class DataWork:
                 print('Your calories: ', self.dp.get_user_calories())
             elif chosen == '4':
                 self.dp.reset_values()
+            elif chosen == '5':
+                self.v.inp_name_msg()
+                name = input()
+                self.v.inp_calories_msg()
+                calories = input()
+                self.dp.add_new_product(name,int(calories))
+
             elif chosen == '0':
                 break
 
