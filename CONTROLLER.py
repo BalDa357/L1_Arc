@@ -10,6 +10,61 @@ class DataWork:
         self.dp = DataProcessing()
         self.v = View()
 
+    def new_product(self):
+        self.v.message('Input name of product: ')
+        name = input().lower()
+        if name in list(self.dp.get_list('', {}, 0).keys()):
+            self.v.message('Product already exist')
+        else:
+            self.v.message('Input calories of new product: ')
+            calories = input()
+            self.dp.create_product(name, {}, int(calories))
+            self.v.message('Added.')
+
+    def show_list(self):
+        self.v.show_products(self.dp.get_list('', {}, 0))
+
+    def calories_amount(self, mass, name):
+            user_calories = self.dp.get_user_calories()
+            clr = self.dp.get_product(name, {}, 0)
+            user_calories += round((int(mass)/100)*clr, 3)
+            self.dp.set_user_calories(user_calories)
+
+    def add_to_calc(self):
+        self.v.message('Input name of product')
+        name = input().lower()
+        if name not in self.dp.get_list('', {}, 0):
+            self.v.message('Wrong product name')
+        else:
+            self.v.message('Input mass of product')
+            mass = input()
+            self.calories_amount(mass, name)
+
+    def c_of_product(self):
+                self.v.message('Input name')
+                name = input().lower()
+                self.v.show_calories(self.dp.get_product(name, {}, 0))
+
+    def del_product(self):
+        self.v.message('Input name of product: ')
+        name = input().lower()
+        if name not in list(self.dp.get_list('', {}, 0).keys()):
+            self.v.message('Product does not exist')
+        else:
+            self.dp.delete_product(name, {}, 0)
+            self.v.message('Deleted.')
+
+    def upd_product(self):
+        self.v.message('Input name of product: ')
+        name = input().lower()
+        if name not in list(self.dp.get_list('', {}, 0).keys()):
+            self.v.message('Product does not exist')
+        else:
+            self.v.message('Input new calories of  product: ')
+            calories = input()
+            self.dp.update_product(name, {}, calories)
+            self.v.message('Updated.')
+
     def main_interface(self):
         """
         Main interface menu
@@ -19,30 +74,21 @@ class DataWork:
             self.v.show_menu()
             chosen = input()
             if chosen == '1':
-                self.v.show_products(self.dp.get_data())
+                self.show_list()
             elif chosen == '2':
-                self.v.inp_choice_msg()
-                name = input()
-                if name not in self.dp.get_data():
-                    print('Wrong product name')
-                else:
-                    self.v.inp_mass_msg()
-                    mass = input()
-                    if self.dp.calories_amount(name, mass):
-                        self.dp.get_user_calories()
-                    else:
-                        print('Error')
+                self.add_to_calc()
             elif chosen == '3':
-                print('Your calories: ', self.dp.get_user_calories())
+                self.v.show_calories(self.dp.get_user_calories())
             elif chosen == '4':
-                self.dp.reset_values()
+                self.dp.set_user_calories(0)
             elif chosen == '5':
-                self.v.inp_name_msg()
-                name = input()
-                self.v.inp_calories_msg()
-                calories = input()
-                self.dp.add_new_product(name,int(calories))
-
+                self.new_product()
+            elif chosen == '6':
+                self.c_of_product()
+            elif chosen == '7':
+                self.del_product()
+            elif chosen == '8':
+                self.upd_product()
             elif chosen == '0':
                 break
 
