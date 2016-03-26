@@ -22,6 +22,15 @@ class DataProcessing:
         print(self.data_new)
         return self.data_new
 
+    def add_new_product(self, name, calories):
+        """
+        Recreating pickle file
+        """
+        self.data_new.update({name:calories})
+        with open('data.pickle', 'wb') as f:
+            pickle.dump(self.data_new, f)
+
+
     def get_user_calories(self):
         """
         :return: User calories

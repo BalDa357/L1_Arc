@@ -12,6 +12,7 @@ class View:
         print('2. Add product to list')
         print('3. Show result of calculate')
         print('4. Reset result of calculate')
+        print('5. Add new product to products list')
         print('0. Exit')
 
     @staticmethod
@@ -49,3 +50,19 @@ class View:
         :return:
         """
         print('Mass of this product: ')
+
+    @staticmethod
+    def inp_name_msg():
+        """
+        show msg for user "Input name of new product: "
+        :return:
+        """
+        print('Input name of new product: ')
+
+    @staticmethod
+    def inp_calories_msg():
+        """
+        show msg for user "Input calories of new product: "
+        :return:
+        """
+        print('Input calories of new product: ')
