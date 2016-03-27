@@ -1,33 +1,84 @@
-import pickle
-
-__author__ = 'Dart Vader'
+import configparser
+config = configparser.ConfigParser()
+config.read('fileconfig.ini')
+if config['DEFAULT']['ModelFile'] == 'pickle':
+    from MOD_PICKLE import upd_file
+if config['DEFAULT']['ModelFile'] == 'json':
+    from MOD_JSON import upd_file
+if config['DEFAULT']['ModelFile'] == 'yaml':
+    from MOD_YAML import upd_file
 
 
 class DataProcessing:
+    user_calories = 0
+
     def __init__(self):
         """
         Read dictionary from pickle file
         :return:
         >>> dp = DataProcessing()
         """
-        with open('data.pickle', 'rb') as f:
-            self.data_new = pickle.load(f)
         self.user_calories = 0
 
-    def get_data(self):
+    @staticmethod
+    @upd_file
+    def get_product(name, data, calories):
         """
-        :return: Dictionary of all products and calories (100g) this product
+        get calorie of product from list
+        :param name:
+        :param data:
+        :param calories:
+        :return: calories
         """
-        return self.data_new
+        return data[name]
 
-    def add_new_product(self, name, calories):
+    @staticmethod
+    @upd_file
+    def get_list(name, data, calories):
         """
-        Recreating pickle file
+        get product from list
+        :param name:
+        :param data:
+        :param calories:
+        :return:
         """
-        self.data_new.update({name:calories})
-        with open('data.pickle', 'wb') as f:
-            pickle.dump(self.data_new, f)
+        return data
 
+    @staticmethod
+    @upd_file
+    def create_product(product, data, calories):
+        """
+        add product to list
+        :param product:
+        :param data:
+        :param calories:
+        :return:
+        """
+        data.update({product: calories})
+
+    @staticmethod
+    @upd_file
+    def delete_product(product, data, calories):
+        """
+        delete product from list
+        :param product:
+        :param data:
+        :param calories:
+        :return:
+        """
+        data.pop(product)
+
+    @staticmethod
+    @upd_file
+    def update_product(product, data, calories):
+        """
+        upadte some product
+        :param product:
+        :param data:
+        :param calories:
+        :return:
+        """
+        data[product] = calories
 
     def get_user_calories(self):
         """
@@ -35,42 +86,10 @@ class DataProcessing:
         """
         return self.user_calories
 
-    def reset_values(self):
+    def set_user_calories(self, new_calories):
         """
-        Reset count of user calories
+        Set user calories
+        :param new_calories:
         :return:
-        >>> dp = DataProcessing()
         """
-        self.user_calories = 0
-
-    def calorie(self, name):
-        """
-        Returns the amount of calories per 100 grams. of chosen product
-        :param name: chosen product
-        :return: amount of calories per 100 grams
-
-        >>> dp = DataProcessing()
-        >>> dp.calorie('ice cream')
-        61
-        """
-        if name.lower() in self.data_new:
-            return self.data_new[name]
-        else:
-            return False
-
-    def calories_amount(self, name, mass):
-        """
-        Count all calories of chosen products
-        :param name: chosen product
-        :param mass: product mass
-        :return:
-        >>> dp = DataProcessing()
-        >>> dp.calories_amount('ice cream', 200)
-        122.0
-
-        """
-        if self.calorie(name.lower()):
-            self.user_calories += round((int(mass)/100)*self.calorie(name), 3)
-            return self.user_calories
-        else:
-            return False
+        self.user_calories = new_calories
