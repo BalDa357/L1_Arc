@@ -1,6 +1,3 @@
-__author__ = 'Dart Vader'
-
-
 class View:
     @staticmethod
     def show_menu():
@@ -8,15 +5,15 @@ class View:
         show menu
         :return:
         """
-        print('1. Show list of products')
-        print('2. Add product to calculator ')
+        print('\n________________________\n1. Show list of products')
+        print('\n________________________\n2. Add product to calculator ')
         print('3. Show result of calculate')
         print('4. Reset result of calculate')
-        print('5. Add new product to products list')
+        print('\n________________________\n5.Add new product to products list')
         print('6. Show product calories')
         print('7. Delete product')
         print('8. Update product')
-        print('0. Exit')
+        print('0. EXIT\n________________________\n')
 
     @staticmethod
     def show_products(data_list):
@@ -39,13 +36,9 @@ class View:
         print(str(calories) + ' calories')
 
     @staticmethod
-    def inp_mass_msg():
-        """
-        show msg for user "Mass of this product: "
-        :return:
-        """
-        print('Mass of this product: ')
-
-    @staticmethod
     def message(mess):
+        """
+            show message for user
+            :return:
+        """
         print(mess)
