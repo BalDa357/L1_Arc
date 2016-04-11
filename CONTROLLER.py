@@ -28,7 +28,10 @@ class DataWork:
         show list of products
         :return:
         """
-        self.display.show_products(self.products.get_list('', {}, 0))
+        if self.products.get_list != {}:
+            self.display.show_products(self.products.get_list('', {}, 0))
+        else:
+            self.display.message("List empty")
 
     def calories_amount(self, mass, name):
         """
@@ -63,7 +66,10 @@ class DataWork:
         """
         self.display.message('Input name')
         name = input().lower()
-        self.display.show_calories(self.products.get_product(name, {}, 0))
+        if name not in list(self.products.get_list('', {}, 0).keys()):
+            self.display.message('Product does not exist')
+        else:
+            self.display.show_calories(self.products.get_product(name, {}, 0))
 
     def del_product(self):
         """
