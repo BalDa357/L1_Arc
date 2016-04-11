@@ -9,7 +9,7 @@ class View:
         print('\n________________________\n2. Add product to calculator ')
         print('3. Show result of calculate')
         print('4. Reset result of calculate')
-        print('\n________________________\n5.Add new product to products list')
+        print('\n________________________\n5 .Add new product to products list')
         print('6. Show product calories')
         print('7. Delete product')
         print('8. Update product')
