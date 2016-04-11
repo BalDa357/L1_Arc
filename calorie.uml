@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>Python</ID>
+  <OriginalElement>#/home/mego_bonus/Projects/PycharmProjects/L1_Arc/CONTROLLER.py</OriginalElement>
+  <nodes>
+    <node x="382.0" y="951.5">VIEW.View</node>
+    <node x="1431.0" y="989.0">MOD_JSON.JsonSerialization</node>
+    <node x="894.0" y="0.0">_collections_abc.Hashable</node>
+    <node x="818.0" y="939.0">MODEL.Products</node>
+    <node x="596.0" y="951.0">MODEL.User</node>
+    <node x="0.0" y="851.0">CONTROLLER.DataWork</node>
+    <node x="623.5" y="158.0">object</node>
+    <node x="1669.0" y="989.0">MOD_YAML.YamlSerialization</node>
+    <node x="1179.0" y="989.0">MOD_PICKLE.PickleSerialization</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="MODEL.User" target="object">
+      <point x="0.0" y="-66.5" />
+      <point x="697.0" y="831.0" />
+      <point x="884.2142857142857" y="831.0" />
+      <point x="-104.28571428571433" y="316.5" />
+    </edge>
+    <edge source="object" target="_collections_abc.Hashable">
+      <point x="0.0" y="-316.5" />
+      <point x="0.0" y="54.0" />
+    </edge>
+    <edge source="MODEL.Products" target="object">
+      <point x="0.0" y="-78.5" />
+      <point x="-5.6843418860808015E-14" y="316.5" />
+    </edge>
+    <edge source="MOD_JSON.JsonSerialization" target="object">
+      <point x="0.0" y="-28.5" />
+      <point x="1540.0" y="821.0" />
+      <point x="1197.0714285714284" y="821.0" />
+      <point x="208.57142857142856" y="316.5" />
+    </edge>
+    <edge source="VIEW.View" target="object">
+      <point x="0.0" y="-66.0" />
+      <point x="479.0" y="821.0" />
+      <point x="779.9285714285713" y="821.0" />
+      <point x="-208.5714285714286" y="316.5" />
+    </edge>
+    <edge source="CONTROLLER.DataWork" target="object">
+      <point x="0.0" y="-166.5" />
+      <point x="181.0" y="811.0" />
+      <point x="675.6428571428571" y="811.0" />
+      <point x="-312.8571428571429" y="316.5" />
+    </edge>
+    <edge source="MOD_PICKLE.PickleSerialization" target="object">
+      <point x="0.0" y="-28.5" />
+      <point x="1295.0" y="831.0" />
+      <point x="1092.7857142857142" y="831.0" />
+      <point x="104.28571428571422" y="316.5" />
+    </edge>
+    <edge source="MOD_YAML.YamlSerialization" target="object">
+      <point x="0.0" y="-28.5" />
+      <point x="1777.0" y="811.0" />
+      <point x="1301.357142857143" y="811.0" />
+      <point x="312.8571428571429" y="316.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.7759136212624584" x="340.51166773710133" y="1049.242132305716" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+</Diagram>
+
