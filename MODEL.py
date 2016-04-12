@@ -1,35 +1,56 @@
-import pickle
+import configparser
+config = configparser.ConfigParser()
+config.read('fileconfig.ini')
+if config['DEFAULT']['ModelFile'] == 'pickle':
+    from MOD_PICKLE import PickleSerialization
+    serialize = PickleSerialization()
 
-__author__ = 'Dart Vader'
+
+elif config['DEFAULT']['ModelFile'] == 'json':
+    from MOD_JSON import JsonSerialization
+    serialize = JsonSerialization()
 
 
-class DataProcessing:
+if config['DEFAULT']['ModelFile'] == 'yaml':
+    from MOD_YAML import YamlSerialization
+    serialize = YamlSerialization()
+
+
+class Products:
+    @staticmethod
+    @serialize.upd_file
+    def get_product(name, data, calories):
+        return data[name]
+
+    @staticmethod
+    @serialize.upd_file
+    def get_list(name, data, calories):
+        return data
+
+    @staticmethod
+    @serialize.upd_file
+    def create_product(product, data, calories):
+            data.update({product: calories})
+
+    @staticmethod
+    @serialize.upd_file
+    def delete_product(product, data, calories):
+        data.pop(product)
+
+    @staticmethod
+    @serialize.upd_file
+    def update_product(product, data, calories):
+        data[product] = calories
+
+
+class User:
     def __init__(self):
         """
         Read dictionary from pickle file
         :return:
-        >>> dp = DataProcessing()
+        >>> user = User()
         """
-
-        with open('data.pickle', 'rb') as f:
-            self.data_new = pickle.load(f)
         self.user_calories = 0
-
-    def get_data(self):
-        """
-        :return: Dictionary of all products and calories (100g) this product
-        """
-        print(self.data_new)
-        return self.data_new
-
-    def add_new_product(self, name, calories):
-        """
-        Recreating pickle file
-        """
-        self.data_new.update({name:calories})
-        with open('data.pickle', 'wb') as f:
-            pickle.dump(self.data_new, f)
-
 
     def get_user_calories(self):
         """
@@ -37,43 +58,5 @@ class DataProcessing:
         """
         return self.user_calories
 
-    def reset_values(self):
-        """
-        Reset count of user calories
-        :return:
-        >>> dp = DataProcessing()
-        """
-        self.user_calories = 0
-
-    def calorie(self, name):
-        """
-        Returns the amount of calories per 100 grams. of chosen product
-        :param name: chosen product
-        :return: amount of calories per 100 grams
-
-        >>> dp = DataProcessing()
-        >>> dp.calorie('ice cream')
-        61
-        """
-        if name.lower() in self.data_new:
-            return self.data_new[name]
-        else:
-            return False
-
-    def calories_amount(self, name, mass):
-        """
-        Count all calories of chosen products
-        :param name: chosen product
-        :param mass: product mass
-        :return:
-        >>> dp = DataProcessing()
-        >>> dp.calories_amount('ice cream', 200)
-        122.0
-
-        """
-        if self.calorie(name.lower()):
-            self.user_calories += round((int(mass)/100)*self.calorie(name), 3)
-            return self.user_calories
-        else:
-            return False
-
+    def set_user_calories(self, new_calories):
+        self.user_calories = new_calories
