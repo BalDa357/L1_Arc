@@ -138,7 +138,7 @@ class Console(DataWork):
         self.products = Products()
         self.user = User()
         self.display = View()
-        parser = self.create_parser
+        parser = self.create_parser()
         namespace = parser.parse_args(sys.argv[1:])
         self.parser_analyze(namespace,sys.argv[1:])
 
@@ -169,17 +169,17 @@ class Console(DataWork):
         :param params:
         :return:
         """
-        if ('-s' or '--show') in params:
+        if '-s' in params or '--show' in params:
             DataWork.show_list(self)
-        if ('-a' or '--add') in params:
+        if '-a' in params or '--add' in params:
             self.new_product(namespace)
-        if ('-d' or '--delete') in params:
+        if '-d' in params or '--delete' in params:
             self.del_product(namespace)
-        if ('-u' or '--update') in params:
+        if '-u' in params or '--update' in params:
             self.upd_product(namespace)
-        if ('-c' or '--calories') in params:
+        if '-c' in params or '--calories' in params:
             self.c_of_product(namespace)
-        if ('r' or '--result'):
+        if '-r' in params or '--result' in params:
             self.calculate(namespace)
 
 
@@ -192,7 +192,7 @@ class Console(DataWork):
         if len(namespace.add) < 2:
             self.display.message('Wrong number of arguments')
             return
-        self.products.create_product(namespace.add[0],{},(namespace.add[1]))
+        self.products.create_product(namespace.add[0].lower(),{},int(namespace.add[1]))
 
     def del_product(self, namespace):
         """
