@@ -4,6 +4,8 @@
 # import CONTROLLER
 # pydoc.writedoc(CONTROLLER)
 
+import pymysql as mdb
+import sys
 import sqlite3 as lite
 
 
@@ -12,12 +14,13 @@ def get_list(database):
     rows = database.fetchall()
     products = {}
     for row in rows:
-        products[row[0]] = row[1]
+        products[row['NAME']] = row['CALORIES']
+        #print(row)
     return products
 
 
 def create_product(name, calories, database):
-    database.execute("INSERT INTO Products VALUES (?,?)", (name, calories))
+    database.execute("INSERT INTO Products(NAME, CALORIES) VALUES (%s,%s)", (name, calories))
 
 
 def delete(name, database):
@@ -29,12 +32,27 @@ def update(name, calories, database):
 
 
 if __name__ == '__main__':
-    con = lite.connect('test.db')
+    #con = lite.connect('test.db')
+    con = mdb.connect(host='localhost',
+                             user='root',
+                             password='4075',
+                             db='test',
+                             charset='utf8mb4',
+                             cursorclass = mdb.cursors.DictCursor)
+
 
     with con:
+
         database = con.cursor()
-        print(get_all(database))
-        #prd = {"bread": 200, "coffee": 25, "milk": 10, "potato": 202, "tomato": "40", "ice cream": 222, "butter": 350}
+        #database.execute("CREATE TABLE Products(NAME VARCHAR(30) NOT NULL PRIMARY KEY UNIQUE , CALORIES INT)")
+        print(get_list(database))
+        #prd = {"bread": 200, "coffee": 25, "milk": 10, "potato": 202, "tomato": 40, "ice cream": 222, "butter": 350}
         #for k in prd:
-            #create(k, prd[k], database)
-            # database.execute("CREATE TABLE Products(NAME TEXT NOT NULL PRIMARY KEY UNIQUE , CALORIES INT)")
+        #    create_product(k, prd[k], database)
+
+
+
+
+
+
+

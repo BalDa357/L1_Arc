@@ -2,7 +2,9 @@ import configparser
 import sys
 import argparse
 
-from MODEL import User, Products
+from MySQL import Products
+
+from MODEL import User
 from VIEW import View
 
 config = configparser.ConfigParser()
