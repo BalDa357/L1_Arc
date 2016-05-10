@@ -1,46 +1,50 @@
 import configparser
+import sqlite3 as lite
+
 config = configparser.ConfigParser()
 config.read('fileconfig.ini')
 if config['DEFAULT']['ModelFile'] == 'pickle':
     from MOD_PICKLE import PickleSerialization
+
     serialize = PickleSerialization()
 
 
 elif config['DEFAULT']['ModelFile'] == 'json':
     from MOD_JSON import JsonSerialization
-    serialize = JsonSerialization()
 
+    serialize = JsonSerialization()
 
 if config['DEFAULT']['ModelFile'] == 'yaml':
     from MOD_YAML import YamlSerialization
+
     serialize = YamlSerialization()
 
 
 class Products:
-    @staticmethod
-    @serialize.upd_file
-    def get_product(name, data, calories):
+    def __init__(self):
+        self.con = lite.connect('test.db')
+        self.database = self.con.cursor()
+
+    def get_list(self):
+        self.database.execute("SELECT * FROM Products")
+        rows = self.database.fetchall()
+        products = {}
+        for row in rows:
+            products[row[0]] = row[1]
+        return products
+
+    def get_product(self, name):
+        data = self.get_list()
         return data[name]
 
-    @staticmethod
-    @serialize.upd_file
-    def get_list(name, data, calories):
-        return data
+    def create_product(self, name, calories):
+        self.database.execute("INSERT INTO Products VALUES (?,?)", (name, calories))
 
-    @staticmethod
-    @serialize.upd_file
-    def create_product(product, data, calories):
-            data.update({product: calories})
+    def delete_product(self, name):
+        self.database.execute("DELETE FROM Products WHERE NAME =:NAME ", {"NAME": name})
 
-    @staticmethod
-    @serialize.upd_file
-    def delete_product(product, data, calories):
-        data.pop(product)
-
-    @staticmethod
-    @serialize.upd_file
-    def update_product(product, data, calories):
-        data[product] = calories
+    def update_product(self,name, calories):
+        self.database.execute("UPDATE Products SET CALORIES=? WHERE NAME =?", (calories, name))
 
 
 class User:
