@@ -19,9 +19,12 @@ class Products:
 
     def create_product(self, name, calories):
         self.database.execute("INSERT INTO Products VALUES (?,?)", (name, calories))
+        self.con.commit()
 
     def delete_product(self, name):
         self.database.execute("DELETE FROM Products WHERE NAME =:NAME ", {"NAME": name})
+        self.con.commit()
 
     def update_product(self,name, calories):
         self.database.execute("UPDATE Products SET CALORIES=? WHERE NAME =?", (calories, name))
+        self.con.commit()

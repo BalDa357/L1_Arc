@@ -2,7 +2,7 @@ import configparser
 import sys
 import argparse
 
-from MySQL import Products
+from PostgreSQL import Products
 
 from MODEL import User
 from VIEW import View
@@ -10,6 +10,8 @@ from VIEW import View
 config = configparser.ConfigParser()
 config.read('fileconfig.ini')
 
+if config['DATABASE'] == "PostgreSQL":
+    from PostgreSQL import Products
 
 class DataWork:
     def __init__(self):

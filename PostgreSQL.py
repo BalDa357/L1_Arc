@@ -1,13 +1,8 @@
-import pymysql as mdb
+import psycopg2 as pdb
 
 class Products:
     def __init__(self):
-        self.con = mdb.connect(host='localhost',
-                             user='root',
-                             password='4075',
-                             db='test',
-                             charset='utf8mb4',
-                             cursorclass = mdb.cursors.DictCursor)
+        self.con = pdb.connect(host='localhost', database='test', user='karl',password='1111')
         self.database = self.con.cursor()
 
 
@@ -16,7 +11,7 @@ class Products:
         rows = self.database.fetchall()
         products = {}
         for row in rows:
-            products[row['NAME']] = row['CALORIES']
+            products[row[0]] = row[1]
         return products
 
     def create_product(self, name, calories):
@@ -24,10 +19,11 @@ class Products:
         self.con.commit()
 
     def delete_product(self,name):
-        self.database.execute("DELETE FROM Products WHERE NAME =%s ", (name))
+        self.database.execute("DELETE FROM Products WHERE 'NAME'={}".format(name))
         self.con.commit()
 
     def update_product(self, name, calories):
         self.database.execute("UPDATE Products SET CALORIES=%s WHERE NAME =%s", (calories, name))
         self.con.commit()
+
 
