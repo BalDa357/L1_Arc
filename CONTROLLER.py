@@ -12,6 +12,10 @@ config.read('fileconfig.ini')
 
 if config['DATABASE'] == "PostgreSQL":
     from PostgreSQL import Products
+elif config['DATABASE'] == "SQlite":
+    from SQLite import Products
+elif config['DATABASE'] == "MySQL":
+    from MySQL import Products
 
 class DataWork:
     def __init__(self):
