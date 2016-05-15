@@ -3,28 +3,26 @@ from MODEL import *
 from VIEW import *
 from CONTROLLER import *
 
-
 test = Products()
 
 test.get_product = mock.MagicMock()
-test.get_product.assert_call_once_with('coffee', {}, 0 )
-result = Products.get_product('coffee', {}, 0 )
+test.get_product.assert_call_once_with('coffee', {}, 0)
+result = Products.get_product('coffe', {}, 0)
 assert result == 25
-print (result)
+print(result)
 
 test.get_list = mock.MagicMock()
-test.get_list.assert_call_once_with('coffee', {}, 0 )
-print (Products.get_list('', {}, 0 ))
+test.get_list.assert_call_once_with('coffee', {}, 0)
+print(Products.get_list('', {}, 0))
 
 test.create_product = mock.MagicMock()
-test.create_product.assert_call_once_with('productToTest', {}, 100 )
+test.create_product.assert_call_once_with('productToTest', {}, 100)
 
 test.delete_product = mock.MagicMock()
-test.delete_product.assert_call_once_with('productToTest', {}, 100 )
+test.delete_product.assert_call_once_with('productToTest', {}, 100)
 
 test.update_product = mock.MagicMock()
-test.update_product.assert_call_once_with('productToTest', {}, 100 )
-
+test.update_product.assert_call_once_with('productToTest', {}, 100)
 
 test = User()
 
@@ -33,7 +31,6 @@ test.get_user_calories()
 
 test.set_user_calories = mock.MagicMock()
 test.set_user_calories.assert_call_once_with(100)
-
 
 test = View()
 
